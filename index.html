@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>quickcify by prevailer</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="app-container">
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <div class="brand">
+            <img src="assets/logo.svg" alt="quickcify logo" class="logo-img">
+            <h2>⚡ Quickcify</h2>
+        </div>
+        <button onclick="newChat()">➕ New Chat</button>
+        <button onclick="clearChat()">🧹 Clear Chat</button>
+        <button onclick="toggleOptions()">⚙️ Options</button>
+        <div id="options" class="hidden">
+            <label for="modelSelect">Choose model:</label>
+            <select id="modelSelect">
+                <option value="gpt-4.1-mini">GPT-4.1-mini</option>
+                <option value="gpt-4.1">GPT-4.1</option>
+            </select>
+            <label for="greetingCase">Greeting style:</label>
+            <select id="greetingCase">
+                <option value="sentence">Sentence case (Hello, I am...)</option>
+                <option value="title">Title Case (Hello, I Am...)</option>
+                <option value="lower">lowercase (hello, i am...)</option>
+                <option value="upper">UPPERCASE (HELLO, I AM...)</option>
+            </select>
+            <div style="margin-top:8px;">
+                <input type="checkbox" id="autoSendGreeting" checked>
+                <label for="autoSendGreeting">Auto-send greeting as first message</label>
+            </div>
+            <div style="margin-top:8px;">
+                <label for="tzSelect">Quick timezone:</label>
+                <select id="tzSelect">
+                    <option value="">-- select timezone --</option>
+                    <option value="Europe/London">Europe/London</option>
+                    <option value="America/New_York">America/New_York</option>
+                    <option value="America/Los_Angeles">America/Los_Angeles</option>
+                    <option value="Asia/Tokyo">Asia/Tokyo</option>
+                    <option value="Australia/Sydney">Australia/Sydney</option>
+                    <option value="Asia/Kolkata">Asia/Kolkata</option>
+                    <option value="Europe/Paris">Europe/Paris</option>
+                    <option value="Europe/Berlin">Europe/Berlin</option>
+                    <option value="Asia/Shanghai">Asia/Shanghai</option>
+                    <option value="Asia/Singapore">Asia/Singapore</option>
+                    <option value="America/Toronto">America/Toronto</option>
+                </select>
+                <button onclick="getTimeForTZ()">Get time</button>
+            </div>
+        </div>
+
+        <div id="leagues" class="leagues">
+            <label>Leagues</label>
+            <div class="league-buttons">
+                <button onclick="fetchLeague('PL','EPL')">EPL</button>
+                <button onclick="fetchLiveScores()">Live All</button>
+                <button onclick="fetchLiveScores('PL')">Live EPL</button>
+                <button onclick="fetchLiveScores('PD')">Live LaLiga</button>
+            </div>
+        </div>
+
+        <div id="savedChats" class="saved-chats">
+            <label>Saved Chats</label>
+            <div id="chatsList" class="chats-list"></div>
+            <button onclick="clearAllSavedChats()" class="clear-chats">Clear All</button>
+        </div>
+    </div>
+
+    <!-- Chat area -->
+    <div class="chat-area">
+        <div id="messages"></div>
+
+        <div class="input-area">
+            <input id="userInput" type="text" placeholder="Type your message..." onkeypress="if(event.key==='Enter'){sendMessage()}">
+            <button onclick="sendMessage()">Send</button>
+        </div>
+    </div>
+
+</div>
+<script src="script.js"></script>
+</body>
+</html>
